@@ -2,7 +2,7 @@ require "bundler/capistrano"
 require 'fast_git_deploy/enable'
 
 set :application, "rails_app"
-set :repository,  "https://github.com/jsierles/kayak.git"
+set :repository,  "https://github.com/brunosoab/rails_app.git"
 set :deploy_to, "/u/apps/#{application}"
 set :scm, :git
 
