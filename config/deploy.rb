@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 require 'fast_git_deploy/enable'
 
-set :application, "kayak"
+set :application, "rails_app"
 set :repository,  "https://github.com/jsierles/kayak.git"
 set :deploy_to, "/u/apps/#{application}"
 set :scm, :git
@@ -15,9 +15,9 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 ssh_options[:keys] = [File.join(ENV["HOME"], ".vagrant.d", "insecure_private_key")]
 
-role :app, "kayak.test"
-role :web, "kayak.test"
-role :db,  "kayak.test", :primary => true
+role :app, "brunosbarros.test"
+role :web, "brunosbarros.test"
+role :db,  "brunosbarros.test", :primary => true
 
 after "deploy:setup" do
   deploy.fast_git_setup.clone_repository
@@ -27,7 +27,7 @@ end
 namespace :unicorn do
   desc "Start unicorn for this application"
   task :start do
-    run "cd #{current_path} && bundle exec unicorn -c /etc/unicorn/kayak.conf.rb -D"
+    run "cd #{current_path} && bundle exec unicorn -c /etc/unicorn/rails_app.conf.rb -D"
   end
 end
 
